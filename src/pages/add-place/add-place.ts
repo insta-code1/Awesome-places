@@ -1,7 +1,11 @@
 import { SetLocationPage } from './../set-location/set-location';
 import { Component } from '@angular/core';
-import { ModalController } from 'ionic-angular';
+import {  ModalController, 
+          LoadingController,
+          ToastController } from 'ionic-angular';
 import { NgForm } from "@angular/forms";
+
+import { Geolocation } from '@ionic-native/geolocation';
 
 import { Location } from './../../models/location';
 
@@ -17,7 +21,11 @@ export class AddPlacePage {
   };
   locationIsSet = false;
 
-  constructor(private modalCtrl: ModalController) {
+  constructor(
+    private modalCtrl: ModalController,
+    private geoLocation: Geolocation,
+    private loadingCtrl: LoadingController,
+    private toastCtrl: ToastController) {
   }
 
   onSubmit(form: NgForm) {
@@ -34,6 +42,29 @@ export class AddPlacePage {
         this.locationIsSet = true;
       }
     });
+  }
+
+  onLocate() {
+    const loader = this.loadingCtrl.create({
+      content: 'Getting your location..'
+    });
+    loader.present();
+    this.geoLocation.getCurrentPosition()
+      .then(location => {
+        loader.dismiss();
+        console.log(location);
+        this.location.lat = location.coords.latitude;
+        this.location.lng = location.coords.longitude;
+        this.locationIsSet = true;
+      })
+      .catch((e) => {
+        loader.dismiss();
+        const toast = this.toastCtrl.create({
+          message: 'Unable to fetch location',
+          duration: 2500
+        });
+        toast.present();
+      });
   }
 
 }

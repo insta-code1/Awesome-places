@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { Geolocation } from '@ionic-native/geolocation';
 
 import { NgForm } from "@angular/forms";
 import { AgmCoreModule } from 'angular2-google-maps/core';
@@ -40,7 +41,8 @@ import { AddPlacePage } from './../pages/add-place/add-place';
     StatusBar,
     SplashScreen,
     NgForm,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    Geolocation,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })
 export class AppModule {}
