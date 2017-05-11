@@ -1,25 +1,25 @@
+import { SetLocationPage } from './../set-location/set-location';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
 import { NgForm } from "@angular/forms";
 
-/**
- * Generated class for the AddPlace page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
-@IonicPage()
+
 @Component({
   selector: 'page-add-place',
   templateUrl: 'add-place.html',
 })
 export class AddPlacePage {
 
-  constructor(private form: NgForm) {
+  constructor(private modalCtrl: ModalController) {
   }
 
   onSubmit(form: NgForm) {
     console.log(form.value);
+  }
+
+  onOpenMap() {
+    const modal = this.modalCtrl.create(SetLocationPage);
+    modal.present();
   }
 
 }

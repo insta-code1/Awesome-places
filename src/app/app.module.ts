@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { NgForm } from "@angular/forms";
+import { AgmCoreModule } from 'angular2-google-maps/core';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -22,7 +23,10 @@ import { AddPlacePage } from './../pages/add-place/add-place';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AgmCoreModule.forRoot({
+     apiKey: 'AIzaSyAQczF5N239VtGhMYh2qbfD4edGdEIr3TU'
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
