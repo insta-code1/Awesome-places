@@ -6,6 +6,7 @@ import {  ModalController,
 import { NgForm } from "@angular/forms";
 
 import { Geolocation } from '@ionic-native/geolocation';
+import { Camera } from '@ionic-native/camera';
 
 import { Location } from './../../models/location';
 
@@ -20,12 +21,14 @@ export class AddPlacePage {
     lng: -73.9759827
   };
   locationIsSet = false;
+  imageUrl: string = '';
 
   constructor(
     private modalCtrl: ModalController,
     private geoLocation: Geolocation,
     private loadingCtrl: LoadingController,
-    private toastCtrl: ToastController) {
+    private toastCtrl: ToastController,
+    private camera: Camera) {
   }
 
   onSubmit(form: NgForm) {
@@ -66,5 +69,21 @@ export class AddPlacePage {
         toast.present();
       });
   }
+
+  onTakePhoto() {
+    // Camera.getPicture({
+    //   encodingType: Camera.EncodingType.JPEG,
+    //   correctOrientation: true
+    // })  when not using mock photo data
+    this.camera.getPicture()
+      .then((imageData) => {
+        console.log(imageData);
+        this.imageUrl = imageData;
+      })
+      .catch((e) => {
+        console.log(e)
+      });
+  }
+
 
 }
