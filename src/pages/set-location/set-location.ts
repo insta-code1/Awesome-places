@@ -9,8 +9,14 @@ import { Component } from '@angular/core';
 })
 export class SetLocationPage {
   location: Location;  
+  marker: Location;
 
   constructor(private navParams: NavParams) {
     this.location = this.navParams.get('location');
+  }
+
+  onSetMarker(event: any) {
+    console.log(event);
+    this.marker = new Location(event.coords.lat, event.coords.lng);
   }
 }
