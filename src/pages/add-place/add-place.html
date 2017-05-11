@@ -9,7 +9,7 @@
 
 <ion-content padding>
 
-  <form>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
     <ion-list>
       <ion-item>
         <ion-label fixed>Title</ion-label>
@@ -30,7 +30,9 @@
     </ion-list>
 
     <ion-grid>
+      
       <ion-row>
+        
         <ion-col>
           <button 
             ion-button
@@ -43,6 +45,7 @@
             Locate me
           </button>
         </ion-col>
+        
         <ion-col>
           <button 
             ion-button
@@ -55,8 +58,57 @@
             Select on Map
           </button>
         </ion-col>
+      
       </ion-row>
+      
+      <ion-row>
+        <ion-col>
+          <p>Select a Place</p>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col text center>
+          <h5>Take a Photo</h5>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col>
+          <button 
+            ion-button
+            icon-left
+            block
+            outline
+            type="button"
+            (click)="OnTakePhoto()">
+          <ion-icon name="camera"></ion-icon>
+          Open Camera
+          </button>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col>
+          <img [src]="" >
+        </ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col>
+          <button 
+            ion-button 
+            color="secondary" 
+            block
+            type="submit"
+            [disabled]="!f.valid">
+            Add this Place
+        </button>
+        </ion-col>
+      </ion-row>
+   
     </ion-grid>
+  
   </form>
 
 </ion-content>

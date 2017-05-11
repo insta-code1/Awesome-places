@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NgForm } from "@angular/forms";
 
 /**
  * Generated class for the AddPlace page.
@@ -14,11 +15,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AddPlacePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private form: NgForm) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AddPlace');
+  onSubmit(form: NgForm) {
+    console.log(form.value);
   }
 
 }
