@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { PlacePage } from './Place';
+import { PlacePage } from './place';
 
 @NgModule({
   declarations: [
